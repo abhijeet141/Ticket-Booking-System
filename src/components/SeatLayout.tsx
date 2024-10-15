@@ -10,7 +10,6 @@ interface BookedSeat{
 export function SeatLayout(){
     const [bookedSeat,setBookedSeat] = useState<BookedSeat[]>([])
     const [finalSeat,setFinalSeat] = useState<BookedSeat[]>([])
-    console.log(bookedSeat);
     const [vipSeats, setVipSeats] = useState(Array.from({length: 5},()=>{
         return Array(5).fill("#b4f8c8")
     }))
@@ -75,12 +74,10 @@ export function SeatLayout(){
                 icon: "error"
                 });
         }
-        console.log(finalBookedSeat);
-        const bookedSeatText = finalBookedSeat.map((value,index)=>`Seat -> ${index + 1} Row -> ${value.row} Column -> ${value.col} Seat Type -> ${value.type}`).join('\n')
-        console.log(bookedSeatText);
+        const bookedSeatText = finalBookedSeat.map((value,index)=>`Seat -> ${index + 1} Row -> ${value.row} Column -> ${value.col} Seat Type -> ${value.type}`).join('<br>')
         Swal.fire({
             title: "Your Seats are booked",
-            text: bookedSeatText,
+            html: bookedSeatText,
             icon: "success"
           });
         setBookedSeat([])
